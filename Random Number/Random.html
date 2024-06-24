@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Flash Number</title>
+        <link rel="stylesheet" href="ranstyle.css" class="stylesheet">
+    </head>
+    <body>
+        <div id="content-wrapper">
+            <h2>Random <a id="type">Number</a></h2>
+            <div id="content">0000</div>
+        </div>
+        <script>
+            const wrapperElem = document.getElementById('content-wrapper');
+            const numElem = document.getElementById('content');
+            const typeElem = document.getElementById("type");
+
+            var isNumber = true;
+
+            // Set Type
+            typeElem.addEventListener('click', () => {
+                typeElem.innerHTML = isNumber ? 'Binary' : 'Number';
+                isNumber = !isNumber;
+            });
+
+            // Random Generator
+            wrapperElem.addEventListener('click', () => {
+
+                var n = "";
+                var setNumber = typeElem.innerHTML == 'Number';
+                var length = setNumber ? 4 : 12;
+
+                for (let i = 0; i < length; i++) {
+                    n += Math.floor(Math.random() * (setNumber ? 10 : 2)).toString(); 
+                    if ((!setNumber) && (i % 3 == 2) && (i != 11)) { n += ' '; }               
+                }
+                numElem.innerHTML = n;
+            });
+        </script>
+    </body>
+</html>
